@@ -26,7 +26,7 @@ class Zabbix():
         events = self.client.event.get(**params)
         return events
 
-    def get_trigger(self, args=None):
+    def get_triggers(self, args=None):
         params = {
             "output": "extend",
             "expandExpression": True,

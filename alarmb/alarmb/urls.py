@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from alarm.views import UserViewSet, GroupViewSet, ZabbixUserViewSet, events_view, triggers_view
+from alarm.views import UserViewSet, GroupViewSet, ZabbixUserViewSet, events_view, triggers_view, user_login
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 
@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'events', events_view),
     url(r'triggers', triggers_view),
+    url(r'login',user_login)
     # url(r'^api-token-auth/', views.obtain_auth_token),
 ]

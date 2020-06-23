@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import json
 from django.contrib.auth.models import User, Group
 from alarm.models import ZabbixUser
 from django.shortcuts import render
@@ -11,14 +12,16 @@ from rest_framework import permissions
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.decorators import api_view,  authentication_classes, permission_classes
-from alarm.config import zabbix_config
+# from alarm.config import zabbix_config
 from rest_framework.response import Response
 from rest_framework import status
 from alarm.event import Zabbix
 from rest_framework.decorators import action
 from alarm.models import ZabbixUser
+from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -54,18 +57,28 @@ def events_view(request):
         config = data['config']
         args = data['args']
         if 'region_name' in config and 'user' in config and 'password' in config:
-            region_name = config['region_name']
-            if region_name in zabbix_config:
-                url = zabbix_config[region_name]
-                user = config['user']
-                password = config['password']
+            try:
+                region = ZabbixUser.objects.get(region_name=config['region_name'])
+            except:
+                error = {'error': '%s can not find'%(config['region_name'])}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
+            if config['user'] != region.username and config['password'] != region.passwd:
+                error = {'error': 'username or password is wrong'}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
+            url = region.region_url
+            user = region.username
+            password = region.passwd
+            try:
                 try:
                     zabbix = Zabbix(url, user, password)
-                    events = zabbix.get_events(args)
-                    return Response(events)
                 except:
                     error = {'error': 'zabbix config is error'}
                     return Response(error, status=status.HTTP_403_FORBIDDEN)
+                events = zabbix.get_events(args)
+                return Response(events)
+            except:
+                error = {'error': 'get events is error'}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
         else:
             error={'error':'params config is error'}
             return Response(error,status=status.HTTP_403_FORBIDDEN)
@@ -83,29 +96,58 @@ def triggers_view(request):
         config = data['config']
         args = data['args']
         if 'region_name' in config and 'user' in config and 'password' in config:
-            region_name = config['region_name']
-            if region_name in zabbix_config:
-                url = zabbix_config[region_name]
-                user = config['user']
-                password = config['password']
+            try:
+                region = ZabbixUser.objects.get(region_name=config['region_name'])
+            except:
+                error = {'error': '%s can not find' % (config['region_name'])}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
+            if config['user'] != region.username and config['password'] != region.passwd:
+                error = {'error': 'username or password is wrong'}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
+            url = region.region_url
+            user = region.username
+            password = region.passwd
+            try:
                 try:
                     zabbix = Zabbix(url, user, password)
-                    triggers = zabbix.get_trigger(args)
-                    return Response(triggers)
                 except:
                     error = {'error': 'zabbix config is error'}
                     return Response(error, status=status.HTTP_403_FORBIDDEN)
+                events = zabbix.get_triggers(args)
+                return Response(events)
+            except:
+                error = {'error': 'get triggers is fail'}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
         else:
-            error={'error':'params config is error'}
-            return Response(error,status=status.HTTP_403_FORBIDDEN)
+            error = {'error': 'params config is error'}
+            return Response(error, status=status.HTTP_403_FORBIDDEN)
     else:
         error = {'error': 'params is error'}
-        return Response(error,status=status.HTTP_403_FORBIDDEN)
-
-# def user_login(request):
-#     if request.POST:
-#
-
-
+        return Response(error, status=status.HTTP_403_FORBIDDEN)
+@csrf_exempt
+def user_login(request):
+    # return HttpResponse('hello world')
+    if request.method=='POST':
+        try:
+            user = json.loads(request.body)
+        except:
+            info = {'status': '0', 'msg': 'user params is wrong'}
+            return JsonResponse(info, status=status.HTTP_200_OK)
+        if 'username' not in user and 'password' not in user:
+            info = {'status': '0', 'msg': 'user params is wrong'}
+            return JsonResponse(info, status=status.HTTP_200_OK)
+        user_name = user['username']
+        pass_word = user['password']
+        user = authenticate(username=user_name, password=pass_word)
+        if user is not None:
+            login(request, user)
+            info = {'status': '1', 'msg': 'login success'}
+            return JsonResponse(info, status=status.HTTP_200_OK)
+        else:
+            info = {'status':'0','msg': 'login fail,username or password is wrong'}
+            return JsonResponse(info, status=status.HTTP_403_FORBIDDEN)
+    else:
+        info = {'status': '0', 'msg': '%s is not allowed'%(request.method)}
+        return JsonResponse(info, status=status.HTTP_403_FORBIDDEN)
 
 

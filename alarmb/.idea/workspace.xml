@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b012affc-bd0c-4158-b2ee-671454d2878a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alarm/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/alarm/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alarm/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alarm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alarmb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarmb/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +46,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/venv/bin/python" />
@@ -88,22 +95,53 @@
       <workItem from="1591923263351" duration="16484000" />
       <workItem from="1592442925085" duration="270000" />
       <workItem from="1592787745448" duration="9632000" />
-      <workItem from="1592876387055" duration="1183000" />
+      <workItem from="1592876387055" duration="11466000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="146" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592877040506">
+    <state x="146" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592894100196">
       <screen x="0" y="0" width="1366" height="714" />
     </state>
-    <state x="146" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.714@0.0.1366.714" timestamp="1592877040506" />
+    <state x="146" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.714@0.0.1366.714" timestamp="1592894100196" />
+    <state x="420" y="100" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592897422487">
+      <screen x="0" y="0" width="1366" height="714" />
+    </state>
+    <state x="420" y="100" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.714@0.0.1366.714" timestamp="1592897422487" />
+    <state x="226" y="0" key="CommitChangelistDialog2" timestamp="1592904512664">
+      <screen x="0" y="0" width="1366" height="714" />
+    </state>
+    <state x="226" y="0" key="CommitChangelistDialog2/0.0.1366.714@0.0.1366.714" timestamp="1592904512664" />
+    <state x="136" y="50" key="DiffContextDialog" timestamp="1592904329332">
+      <screen x="0" y="0" width="1366" height="714" />
+    </state>
+    <state x="136" y="50" key="DiffContextDialog/0.0.1366.714@0.0.1366.714" timestamp="1592904329332" />
     <state x="811" y="167" key="FileChooserDialogImpl" timestamp="1592876884889">
       <screen x="0" y="0" width="1366" height="714" />
     </state>
     <state x="811" y="167" key="FileChooserDialogImpl/0.0.1366.714@0.0.1366.714" timestamp="1592876884889" />
+    <state width="1320" height="104" key="GridCell.Tab.0.bottom" timestamp="1592894128862">
+      <screen x="0" y="0" width="1366" height="714" />
+    </state>
+    <state width="1320" height="104" key="GridCell.Tab.0.bottom/0.0.1366.714@0.0.1366.714" timestamp="1592894128862" />
+    <state width="1320" height="104" key="GridCell.Tab.0.center" timestamp="1592894128861">
+      <screen x="0" y="0" width="1366" height="714" />
+    </state>
+    <state width="1320" height="104" key="GridCell.Tab.0.center/0.0.1366.714@0.0.1366.714" timestamp="1592894128861" />
+    <state width="1320" height="104" key="GridCell.Tab.0.left" timestamp="1592894128859">
+      <screen x="0" y="0" width="1366" height="714" />
+    </state>
+    <state width="1320" height="104" key="GridCell.Tab.0.left/0.0.1366.714@0.0.1366.714" timestamp="1592894128859" />
+    <state width="1320" height="104" key="GridCell.Tab.0.right" timestamp="1592894128861">
+      <screen x="0" y="0" width="1366" height="714" />
+    </state>
+    <state width="1320" height="104" key="GridCell.Tab.0.right/0.0.1366.714@0.0.1366.714" timestamp="1592894128861" />
     <state x="221" y="0" key="SettingsEditor" timestamp="1592876916231">
       <screen x="0" y="0" width="1366" height="714" />
     </state>

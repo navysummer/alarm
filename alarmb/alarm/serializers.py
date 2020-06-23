@@ -30,4 +30,4 @@ class GroupSerializer(serializers.ModelSerializer):
 class ZabbixUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = ZabbixUser
-        fields = ['id', 'region_name', 'region_url', 'url', 'username', 'passwd']
+        fields = ['id', 'region_name', 'url']
