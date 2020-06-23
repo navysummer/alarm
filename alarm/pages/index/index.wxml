@@ -1,18 +1,12 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
   <view class="usermotto">
     <button type="primary" bindtap="getList">获取系统列表</button>
-      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-    <view class="picker">
-      当前选择：{{array[index]}}
-    </view>
-  </picker>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" wx:if="{{ flag }}">
+      <view class="picker">
+        当前资源池：{{array[index]}}
+      </view>
+    </picker>
+    <button type="primary" bindtap="get_events" wx:if="{{ flag }}">获取资源池告警</button>
   </view>
 </view>

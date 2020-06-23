@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b012affc-bd0c-4158-b2ee-671454d2878a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../alarm/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alarm/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/pages/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alarm/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/pages/index/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alarm/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/pages/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alarm/pages/login/login.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/pages/login/login.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alarm/pages/login/login.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/pages/login/login.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alarm/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/project.config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarm/config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarm/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarm/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarmb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarmb/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,12 +35,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="1944" />
-    <option name="height" value="1104" />
-  </component>
   <component name="ProjectId" id="1dhTYvHuUnK542Dbv6FNn6Aoi3D" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -47,11 +43,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/venv/bin/python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
@@ -65,7 +64,7 @@
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="launchJavascriptDebuger" value="false" />
@@ -96,6 +95,8 @@
       <workItem from="1592442925085" duration="270000" />
       <workItem from="1592787745448" duration="9632000" />
       <workItem from="1592876387055" duration="11466000" />
+      <workItem from="1592912159558" duration="608000" />
+      <workItem from="1592912781026" duration="1574000" />
     </task>
     <servers />
   </component>
@@ -106,10 +107,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="146" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592894100196">
-      <screen x="0" y="0" width="1366" height="714" />
+    <state x="379" y="0" key="#alarmb" timestamp="1592912762366">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="0" key="#alarmb/0.0.1366.728@0.0.1366.728" timestamp="1592912762366" />
+    <state x="146" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592912604299">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="146" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.714@0.0.1366.714" timestamp="1592894100196" />
+    <state x="146" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1592912604299" />
     <state x="420" y="100" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592897422487">
       <screen x="0" y="0" width="1366" height="714" />
     </state>
@@ -126,25 +132,30 @@
       <screen x="0" y="0" width="1366" height="714" />
     </state>
     <state x="811" y="167" key="FileChooserDialogImpl/0.0.1366.714@0.0.1366.714" timestamp="1592876884889" />
-    <state width="1320" height="104" key="GridCell.Tab.0.bottom" timestamp="1592894128862">
-      <screen x="0" y="0" width="1366" height="714" />
+    <state width="1322" height="174" key="GridCell.Tab.0.bottom" timestamp="1592917508406">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1320" height="104" key="GridCell.Tab.0.bottom/0.0.1366.714@0.0.1366.714" timestamp="1592894128862" />
-    <state width="1320" height="104" key="GridCell.Tab.0.center" timestamp="1592894128861">
-      <screen x="0" y="0" width="1366" height="714" />
+    <state width="1322" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1592917508406" />
+    <state width="1322" height="174" key="GridCell.Tab.0.center" timestamp="1592917508406">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1320" height="104" key="GridCell.Tab.0.center/0.0.1366.714@0.0.1366.714" timestamp="1592894128861" />
-    <state width="1320" height="104" key="GridCell.Tab.0.left" timestamp="1592894128859">
-      <screen x="0" y="0" width="1366" height="714" />
+    <state width="1322" height="174" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1592917508406" />
+    <state width="1322" height="174" key="GridCell.Tab.0.left" timestamp="1592917508405">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1320" height="104" key="GridCell.Tab.0.left/0.0.1366.714@0.0.1366.714" timestamp="1592894128859" />
-    <state width="1320" height="104" key="GridCell.Tab.0.right" timestamp="1592894128861">
-      <screen x="0" y="0" width="1366" height="714" />
+    <state width="1322" height="174" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1592917508405" />
+    <state width="1322" height="174" key="GridCell.Tab.0.right" timestamp="1592917508406">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1320" height="104" key="GridCell.Tab.0.right/0.0.1366.714@0.0.1366.714" timestamp="1592894128861" />
-    <state x="221" y="0" key="SettingsEditor" timestamp="1592876916231">
-      <screen x="0" y="0" width="1366" height="714" />
+    <state width="1322" height="174" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592917508406" />
+    <state x="221" y="0" key="SettingsEditor" timestamp="1592912741145">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="221" y="0" key="SettingsEditor/0.0.1366.714@0.0.1366.714" timestamp="1592876916231" />
+    <state x="221" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1592912741145" />
   </component>
 </project>
