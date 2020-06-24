@@ -55,6 +55,22 @@ Page({
     this.setData({index:e.detail.value})
   },
   get_events:function(e){
+    let regions = this.data.regions
+    if(regions.length!=0){
+      let idx = this.data.index
+      wx.setStorage({
+        data: regions[idx],
+        key: 'event_params',
+      })
+      wx.redirectTo({
+        url: '/pages/events/events'
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '当前资源池列表为空'
+      })
+    }
     console.log(this)
   }
 })

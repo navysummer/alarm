@@ -71,9 +71,9 @@ Page({
         let status = res.data.status
         if(status==1){
             wx.setStorage({
-            data: user,
-            key: 'user',
-          })
+              data: user,
+              key: 'user',
+            })
           app.globalData.basicAuth = "Basic " + common.base64_encode(username+':'+password)
           wx.redirectTo({
             url: '/pages/index/index'

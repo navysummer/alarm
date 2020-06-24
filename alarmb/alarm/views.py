@@ -121,7 +121,7 @@ def triggers_view(request):
         error = {'error': 'params is error'}
         return Response(error, status=status.HTTP_403_FORBIDDEN)
 
-    
+
 @csrf_exempt
 def user_login(request):
     if request.method == 'POST':
