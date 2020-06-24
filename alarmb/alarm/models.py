@@ -15,7 +15,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 # Create your models here.
 
 
-class ZabbixUser(models.Model):
+class Region(models.Model):
     region_name = models.CharField(max_length=50)
     region_url = models.URLField()
     username = models.CharField(max_length=50)

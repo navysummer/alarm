@@ -35,6 +35,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    baseurl:'http://127.0.0.1:8000'
+    baseurl:'http://127.0.0.1:8000',
+    basicAuth:''
   },
 })

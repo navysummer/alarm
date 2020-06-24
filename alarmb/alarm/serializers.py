@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from alarm.models import ZabbixUser
+from alarm.models import Region
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -27,7 +27,7 @@ class GroupSerializer(serializers.ModelSerializer):
         fields = ['id', 'url', 'name','user_set']
 
 
-class ZabbixUserSerializer(serializers.ModelSerializer):
+class RegionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ZabbixUser
+        model = Region
         fields = ['id', 'region_name', 'url']

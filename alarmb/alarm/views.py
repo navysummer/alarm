@@ -2,22 +2,20 @@
 from __future__ import unicode_literals
 import json
 from django.contrib.auth.models import User, Group
-from alarm.models import ZabbixUser
+from alarm.models import Region
 from django.shortcuts import render
 from rest_framework import viewsets
-from .serializers import UserSerializer, GroupSerializer, ZabbixUserSerializer
+from .serializers import UserSerializer, GroupSerializer, RegionSerializer
 from rest_framework import generics
 from alarm.permissions import IsOwnerOrReadOnly
 from rest_framework import permissions
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.decorators import api_view,  authentication_classes, permission_classes
-# from alarm.config import zabbix_config
 from rest_framework.response import Response
 from rest_framework import status
 from alarm.event import Zabbix
 from rest_framework.decorators import action
-from alarm.models import ZabbixUser
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
@@ -41,11 +39,11 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
 
 
-class ZabbixUserViewSet(viewsets.ModelViewSet):
+class RegionViewSet(viewsets.ModelViewSet):
     authentication_classes = (BasicAuthentication,)
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsAuthenticated, IsAdminUser)
-    queryset = ZabbixUser.objects.all()
-    serializer_class = ZabbixUserSerializer
+    queryset = Region.objects.all()
+    serializer_class = RegionSerializer
 
 
 @api_view(["POST"])
@@ -58,7 +56,7 @@ def events_view(request):
         args = data['args']
         if 'region_name' in config and 'user' in config and 'password' in config:
             try:
-                region = ZabbixUser.objects.get(region_name=config['region_name'])
+                region = Region.objects.get(region_name=config['region_name'])
             except:
                 error = {'error': '%s can not find'%(config['region_name'])}
                 return Response(error, status=status.HTTP_403_FORBIDDEN)
@@ -97,13 +95,13 @@ def triggers_view(request):
         args = data['args']
         if 'region_name' in config and 'user' in config and 'password' in config:
             try:
-                region = ZabbixUser.objects.get(region_name=config['region_name'])
+                region = Region.objects.get(region_name=config['region_name'])
             except:
                 error = {'error': '%s can not find' % (config['region_name'])}
                 return Response(error, status=status.HTTP_403_FORBIDDEN)
             if config['user'] != region.username and config['password'] != region.passwd:
                 error = {'error': 'username or password is wrong'}
-                return Response(error, status=status.HTTP_403_FORBIDDEN)
+                return Response(error, status=status.HTTP_401_UNAUTHORIZED)
             url = region.region_url
             user = region.username
             password = region.passwd
@@ -126,8 +124,7 @@ def triggers_view(request):
         return Response(error, status=status.HTTP_403_FORBIDDEN)
 @csrf_exempt
 def user_login(request):
-    # return HttpResponse('hello world')
-    if request.method=='POST':
+    if request.method == 'POST':
         try:
             user = json.loads(request.body)
         except:

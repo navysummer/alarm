@@ -57,7 +57,6 @@ Page({
     let user = e.detail.value
     let username = user.username
     let password = user.passwd
-    console.log(username,password)
     wx.request({
       url: baseurl+'/login',
       method:'POST',
@@ -75,6 +74,7 @@ Page({
             data: user,
             key: 'user',
           })
+          app.globalData.basicAuth = "Basic " + common.base64_encode(username+':'+password)
           wx.redirectTo({
             url: '/pages/index/index'
           })

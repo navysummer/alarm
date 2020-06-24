@@ -78,8 +78,35 @@ function utf8_decode (utftext) { // utf-8解码
   }
   return string;
 }
-
+function authenticate(app){
+    let vflag = false
+    try {
+        var user = wx.getStorageSync('user')
+      } catch (e) {
+        vflag = false
+        return vflag
+      }
+    if(typeof(user)=='undefined'){
+       vflag = false
+       return vflag
+    }
+    if(typeof(user.username)!='undefined' && typeof(user.passwd)!='undefined'){
+        let auth_str = "Basic " + base64_encode(user.username+':'+user.passwd)
+        let vauth_str = app.globalData.basicAuth
+        if(auth_str==vauth_str){
+            vflag = true
+            return vflag
+        }else{
+            vflag = false
+            return vflag
+        }
+      }else{
+        vflag = false
+        return vflag
+      }
+}
 module.exports = {
   base64_encode:base64_encode,
-  base64_decode:base64_decode
+  base64_decode:base64_decode,
+  authenticate:authenticate
 }

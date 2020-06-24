@@ -1,10 +1,10 @@
 <!--index.wxml-->
 <view class="container">
   <view class="usermotto">
-    <button type="primary" bindtap="getList">获取系统列表</button>
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" wx:if="{{ flag }}">
+    <button type="primary" bindtap="getList">获取资源池列表</button>
+    <picker bindchange="bindPickerChange" value="{{idx}}" range="{{regions}}" range-key="region_name" wx:if="{{ flag }}">
       <view class="picker">
-        当前资源池：{{array[index]}}
+        当前资源池：{{regions[index].region_name}}
       </view>
     </picker>
     <button type="primary" bindtap="get_events" wx:if="{{ flag }}">获取资源池告警</button>

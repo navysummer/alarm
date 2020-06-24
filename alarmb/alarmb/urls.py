@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from alarm.views import UserViewSet, GroupViewSet, ZabbixUserViewSet, events_view, triggers_view, user_login
+from alarm.views import UserViewSet, GroupViewSet, RegionViewSet, events_view, triggers_view, user_login
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet, basename='user')
 router.register(r'groups', GroupViewSet, basename='group')
-router.register(r'zabbixusers', ZabbixUserViewSet, basename='zabbixuser')
+router.register(r'regions', RegionViewSet, basename='region')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

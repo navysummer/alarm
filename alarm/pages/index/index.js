@@ -3,27 +3,35 @@
 const app = getApp()
 var common = require('../../libs/common.js')
 var baseurl = app.globalData.baseurl
-console.log(app)
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    flag:false
+    flag:false,
+    regions:[],
+    index:0
   },
   onLoad: function () {
-  
+    let flag = common.authenticate(app)
+    if(!flag){
+      wx.redirectTo({
+        url: '/pages/login/login'
+      })
+    }
+
   },
   getList:function(e){
+    let basicAuth = app.globalData.basicAuth
+    console.log(basicAuth)
     let _this = this
-    // console.log(this)
     wx.request({
-      url: baseurl+'/zabbixusers',
+      url: baseurl+'/regions',
       method:'GET',
       header:{
         "Content-Type": " application/json",
-        "Authorization": "Basic " + common.base64_encode('root:Xia990722')
+        "Authorization": basicAuth
       },
       
       success(res){
@@ -31,8 +39,7 @@ Page({
           data: res.data,
           key: 'regions',
         })
-        // console.log(this)
-        _this.setData({flag:true})
+        _this.setData({flag:true,regions:res.data})
       },
       fail(e){
         console.log(e)
@@ -43,5 +50,8 @@ Page({
         return []
       }
     })
+  },
+  bindPickerChange:function(e){
+    this.setData({index:e.detail.value})
   }
 })
