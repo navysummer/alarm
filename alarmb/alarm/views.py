@@ -51,17 +51,14 @@ class RegionViewSet(viewsets.ModelViewSet):
 @permission_classes((IsAuthenticated,))
 def events_view(request):
     data = request.data
-    if 'config' in data and 'args' in data:
+    if 'config' in data:
         config = data['config']
-        args = data['args']
-        if 'region_name' in config and 'user' in config and 'password' in config:
+        args = None
+        if 'region_name' in config and 'id' in config:
             try:
-                region = Region.objects.get(region_name=config['region_name'])
+                region = Region.objects.get(region_name=config['region_name'], id=config['id'])
             except:
                 error = {'error': '%s can not find'%(config['region_name'])}
-                return Response(error, status=status.HTTP_403_FORBIDDEN)
-            if config['user'] != region.username and config['password'] != region.passwd:
-                error = {'error': 'username or password is wrong'}
                 return Response(error, status=status.HTTP_403_FORBIDDEN)
             url = region.region_url
             user = region.username
@@ -72,6 +69,8 @@ def events_view(request):
                 except:
                     error = {'error': 'zabbix config is error'}
                     return Response(error, status=status.HTTP_403_FORBIDDEN)
+                if 'args' in data:
+                    args = data['args']
                 events = zabbix.get_events(args)
                 return Response(events)
             except:
@@ -90,18 +89,15 @@ def events_view(request):
 @permission_classes((IsAuthenticated,))
 def triggers_view(request):
     data = request.data
-    if 'config' in data and 'args' in data:
+    if 'config' in data:
         config = data['config']
-        args = data['args']
-        if 'region_name' in config and 'user' in config and 'password' in config:
+        args = None
+        if 'region_name' in config and 'id' in config:
             try:
-                region = Region.objects.get(region_name=config['region_name'])
+                region = Region.objects.get(region_name=config['region_name'], id=config['id'])
             except:
                 error = {'error': '%s can not find' % (config['region_name'])}
                 return Response(error, status=status.HTTP_403_FORBIDDEN)
-            if config['user'] != region.username and config['password'] != region.passwd:
-                error = {'error': 'username or password is wrong'}
-                return Response(error, status=status.HTTP_401_UNAUTHORIZED)
             url = region.region_url
             user = region.username
             password = region.passwd
@@ -111,7 +107,9 @@ def triggers_view(request):
                 except:
                     error = {'error': 'zabbix config is error'}
                     return Response(error, status=status.HTTP_403_FORBIDDEN)
-                events = zabbix.get_triggers(args)
+                if 'args' in data:
+                    args = data['args']
+                events = zabbix.get_events(args)
                 return Response(events)
             except:
                 error = {'error': 'get triggers is fail'}
@@ -122,6 +120,8 @@ def triggers_view(request):
     else:
         error = {'error': 'params is error'}
         return Response(error, status=status.HTTP_403_FORBIDDEN)
+
+    
 @csrf_exempt
 def user_login(request):
     if request.method == 'POST':
@@ -129,10 +129,10 @@ def user_login(request):
             user = json.loads(request.body)
         except:
             info = {'status': '0', 'msg': 'user params is wrong'}
-            return JsonResponse(info, status=status.HTTP_200_OK)
+            return JsonResponse(info, status=status.HTTP_403_FORBIDDEN)
         if 'username' not in user and 'password' not in user:
             info = {'status': '0', 'msg': 'user params is wrong'}
-            return JsonResponse(info, status=status.HTTP_200_OK)
+            return JsonResponse(info, status=status.HTTP_403_FORBIDDEN)
         user_name = user['username']
         pass_word = user['password']
         user = authenticate(username=user_name, password=pass_word)
@@ -142,7 +142,7 @@ def user_login(request):
             return JsonResponse(info, status=status.HTTP_200_OK)
         else:
             info = {'status':'0','msg': 'login fail,username or password is wrong'}
-            return JsonResponse(info, status=status.HTTP_403_FORBIDDEN)
+            return JsonResponse(info, status=status.HTTP_401_UNAUTHORIZED)
     else:
         info = {'status': '0', 'msg': '%s is not allowed'%(request.method)}
         return JsonResponse(info, status=status.HTTP_403_FORBIDDEN)
