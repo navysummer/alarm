@@ -53,5 +53,8 @@ Page({
   },
   bindPickerChange:function(e){
     this.setData({index:e.detail.value})
+  },
+  get_events:function(e){
+    console.log(this)
   }
 })
