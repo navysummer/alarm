@@ -72,7 +72,7 @@ def events_view(request):
                 if 'args' in data:
                     args = data['args']
                 events = zabbix.get_events(args)
-                return Response(events)
+                return Response(events,status=status.HTTP_200_OK)
             except:
                 error = {'error': 'get events is error'}
                 return Response(error, status=status.HTTP_403_FORBIDDEN)
@@ -109,8 +109,8 @@ def triggers_view(request):
                     return Response(error, status=status.HTTP_403_FORBIDDEN)
                 if 'args' in data:
                     args = data['args']
-                events = zabbix.get_events(args)
-                return Response(events)
+                triggers = zabbix.get_triggers(args)
+                return Response(triggers,status=status.HTTP_200_OK)
             except:
                 error = {'error': 'get triggers is fail'}
                 return Response(error, status=status.HTTP_403_FORBIDDEN)

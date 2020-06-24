@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b012affc-bd0c-4158-b2ee-671454d2878a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../alarm/pages/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/pages/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../alarm/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/pages/index/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alarm/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/event.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alarm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,11 +22,6 @@
         <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>Zabbix</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -91,7 +90,7 @@
       <workItem from="1592912159558" duration="608000" />
       <workItem from="1592912781026" duration="1574000" />
       <workItem from="1592961447947" duration="4289000" />
-      <workItem from="1592981025104" duration="2407000" />
+      <workItem from="1592981025104" duration="5789000" />
     </task>
     <servers />
   </component>

@@ -24,7 +24,6 @@ Page({
   },
   getList:function(e){
     let basicAuth = app.globalData.basicAuth
-    console.log(basicAuth)
     let _this = this
     wx.request({
       url: baseurl+'/regions',
@@ -47,7 +46,6 @@ Page({
           data: [],
           key: 'regions',
         })
-        return []
       }
     })
   },
@@ -71,6 +69,5 @@ Page({
         content: '当前资源池列表为空'
       })
     }
-    console.log(this)
   }
 })

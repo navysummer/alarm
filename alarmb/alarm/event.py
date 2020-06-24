@@ -17,7 +17,7 @@ class Zabbix():
 
     def get_events(self, args=None):
         params = {
-            "output": "extend",
+            "output":['eventid','acknowledged','hosts','lastchange'],
             "selectHosts": ['hostid', 'host'],
             "selectRelatedObject": ['triggerid', 'description', 'priority', 'status', 'state', 'value', 'lastchange']
         }
