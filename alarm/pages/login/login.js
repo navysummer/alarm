@@ -87,11 +87,10 @@ Page({
       },
       fail(e){
         console.log(e)
-        wx.setStorage({
-          data: [],
-          key: 'regions',
+        wx.showModal({
+          title: '提示',
+          content: '无法连接到后端服务器'
         })
-        return []
       }
     })
   },
