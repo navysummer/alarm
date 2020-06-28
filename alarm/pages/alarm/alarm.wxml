@@ -1,0 +1,31 @@
+<!--pages/alarm/alarm-->
+<wxs module="format_time" src="../../utils/format_time.wxs"></wxs>
+<view>
+<view class="groups">
+<label>主机组：</label>
+<input class="groups_input" placeholder="主机组，逗号连接"/>
+<button style="margin: 30rpx 0" type="default" bindtap="get_groups">选择</button>
+</view>
+<view class="hosts">
+<label>主机：</label>
+<input class="hosts_input"/>
+<button style="margin: 30rpx 0" type="default" bindtap="get_hosts">选择</button>
+</view>
+<view class="triggers">
+<label>触发器：</label>
+<input class="triggers_input"/>
+<button style="margin: 30rpx 0" type="default" bindtap="get_triggers">选择</button>
+</view>
+<view class="detail">
+<view wx:for="{{table_header}}" wx:key="*this">
+<label>{{item}}</label>
+</view>
+  <view wx:for="{{alarms}}" wx:key="triggerid">
+    <view  wx:for="{{item.hosts}}" wx:key="hostid" wx:for-item="host">
+      <navigator url="/pages/events/events?triggerid={{item.triggerid}}&&eventid={{item.lastEvent.eventid}}" hover-class="navigator-hover">{{format_time.getDateTime(item.lastchange)}}</navigator>  
+      <text>{{format_time.getPriority(item.priority)}} </text>  <text>{{format_time.getStatus(item.value)}}</text>  <navigator url="/pages/triggers/triggers?triggerid={{item.triggerid}}&&hostid={{host.hostid}}" hover-class="navigator-hover">{{host.host}}</navigator>  <navigator url="/pages/triggers/triggers?triggerid={{item.triggerid}}&&hostid={{host.hostid}}" hover-class="navigator-hover">{{item.description}}</navigator>  <text>{{format_time.getacknowledged(item.lastEvent.acknowledged)}}</text>
+    </view>
+
+  </view>
+</view>
+</view>

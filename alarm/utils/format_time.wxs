@@ -1,0 +1,58 @@
+var filter = {
+  getDateTime: function (value) {
+      var time = getDate(parseInt(parseInt(value)*1000));
+      var year = time.getFullYear();
+      var month = time.getMonth() + 1;
+      var date = time.getDate();
+      var hour = time.getHours();
+      var minute = time.getMinutes();
+      var second = time.getSeconds();
+      month = month < 10 ? "0" + month : month;
+      date = date < 10 ? "0" + date : date;
+      hour = hour < 10 ? "0" + hour : hour;
+      minute = minute < 10 ? "0" + minute : minute;
+      second = second < 10 ? "0" + second : second;
+      return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+  },
+  getPriority: function (value) {
+    if(value=='0'){
+      return '未分类'
+    }else if(value=='1'){
+      return '信息'
+    }else if(value=='2'){
+      return '警告'
+    }else if(value=='3'){
+      return '一般严重'
+    }else if(value=='4'){
+      return '严重'
+    }else if(value=='5'){
+      return '灾难'
+    }else{
+      return '未知'
+    }
+  },
+  getStatus:function(value){
+    if(value=='0'){
+      return '正常'
+    }else if(value=='1'){
+      return '有问题'
+    }else{
+      return '未知'
+    }
+  },
+  getacknowledged:function(value){
+    if(value=='0'){
+      return '不'
+    }else if(value=='1'){
+      return '是'
+    }else{
+      return '未知'
+    }
+  }
+}
+module.exports = {
+  getDateTime: filter.getDateTime,
+  getPriority:filter.getPriority,
+  getStatus:filter.getStatus,
+  getacknowledged:filter.getacknowledged
+}

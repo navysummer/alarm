@@ -52,16 +52,17 @@ Page({
   bindPickerChange:function(e){
     this.setData({index:e.detail.value})
   },
-  get_events:function(e){
+  get_alarms:function(e){
+    console.log(123)
     let regions = this.data.regions
     if(regions.length!=0){
       let idx = this.data.index
       wx.setStorage({
         data: regions[idx],
-        key: 'event_params',
+        key: 'alarm_params',
       })
       wx.redirectTo({
-        url: '/pages/events/events'
+        url: '/pages/alarm/alarm'
       })
     }else{
       wx.showModal({

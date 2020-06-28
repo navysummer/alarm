@@ -7,6 +7,6 @@
         当前资源池：{{regions[index].region_name}}
       </view>
     </picker>
-    <button type="primary" bindtap="get_events" wx:if="{{ flag }}">获取资源池告警</button>
+    <button type="primary" bindtap="get_alarms" wx:if="{{ flag }}">获取资源池告警</button>
   </view>
 </view>

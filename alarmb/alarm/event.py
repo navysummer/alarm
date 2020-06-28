@@ -15,25 +15,19 @@ class Zabbix():
         self.client = ZabbixAPI(url)
         self.client.login(user, password)
 
-    def get_events(self, args=None):
-        params = {
-            "output":['eventid','acknowledged','hosts','lastchange'],
-            "selectHosts": ['hostid', 'host'],
-            "selectRelatedObject": ['triggerid', 'description', 'priority', 'status', 'state', 'value', 'lastchange']
-        }
-        if args and isinstance(args, dict):
-            params.update(args)
+    def get_events(self, params=None):
+        if not params or not  isinstance(params, dict):
+            params = {
+                "output": "extend"
+            }
         events = self.client.event.get(**params)
         return events
 
-    def get_triggers(self, args=None):
-        params = {
-            "output": "extend",
-            "expandExpression": True,
-            "expandDescription": True
-        }
-        if args and isinstance(args, dict):
-            params.update(args)
+    def get_triggers(self, params=None):
+        if not params or not isinstance(params, dict):
+            params = {
+                "output": "extend"
+            }
         triggers = self.client.trigger.get(**params)
         return triggers
 

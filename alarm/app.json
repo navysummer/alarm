@@ -3,8 +3,9 @@
     "pages/login/login",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/events/events",
-    "pages/triggers/triggers"
+    "pages/alarm/alarm",
+    "pages/triggers/triggers",
+    "pages/events/events"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -14,5 +15,4 @@
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
-  
 }

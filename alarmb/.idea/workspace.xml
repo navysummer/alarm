@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b012affc-bd0c-4158-b2ee-671454d2878a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../alarm/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/pages/index/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alarm/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/event.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alarm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/views.py" afterDir="false" />
@@ -71,6 +70,18 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -91,11 +102,13 @@
       <workItem from="1592912781026" duration="1574000" />
       <workItem from="1592961447947" duration="4289000" />
       <workItem from="1592981025104" duration="5789000" />
+      <workItem from="1593305878920" duration="196000" />
+      <workItem from="1593306104245" duration="8206000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LAST_COMMIT_MESSAGE" value="" />
@@ -105,9 +118,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="0" key="#alarmb/0.0.1366.728@0.0.1366.728" timestamp="1592912762366" />
-    <state x="146" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592912604299">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="137" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593306075852">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="137" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1593306075852" />
     <state x="146" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.714@0.0.1366.714" timestamp="1592894100196" />
     <state x="146" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1592912604299" />
     <state x="420" y="100" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1592897422487">
@@ -146,10 +160,15 @@
     </state>
     <state width="1320" height="104" key="GridCell.Tab.0.right/0.0.1366.714@0.0.1366.714" timestamp="1592894128861" />
     <state width="1322" height="174" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1592963859943" />
-    <state x="221" y="0" key="SettingsEditor" timestamp="1592912741145">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="207" y="0" key="SettingsEditor" timestamp="1593306046240">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="207" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1593306046240" />
     <state x="221" y="0" key="SettingsEditor/0.0.1366.714@0.0.1366.714" timestamp="1592876916231" />
     <state x="221" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1592912741145" />
+    <state x="329" y="165" key="com.intellij.ide.util.TipDialog" timestamp="1593305882116">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="329" y="165" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1593305882116" />
   </component>
 </project>

@@ -1,0 +1,21 @@
+/* .groups_input{
+  display: inline-table;
+  
+}
+.hosts_input{
+  display: inline-table;
+}
+.triggers_input{
+  display: inline-table;
+} */
+input{
+  display: inline-table;
+  width: 50%;
+  height: 10%;
+}
+button{
+  display: inline-table;
+}
+label{
+  display: inline-table;
+}
