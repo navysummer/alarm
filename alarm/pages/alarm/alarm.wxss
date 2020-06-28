@@ -19,3 +19,8 @@ button{
 label{
   display: inline-table;
 }
+.divLine{
+  background: #E0E3DA;
+  width: 100%;
+  height: 5rpx;
+ }

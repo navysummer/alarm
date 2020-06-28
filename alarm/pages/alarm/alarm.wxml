@@ -18,6 +18,13 @@
       <input class="triggers_input"/>
       <button style="margin: 30rpx 0" type="default" bindtap="get_triggers">选择</button>
       </view>
+      <view class="min_priority">
+      <picker bindchange="bindPickerChange" value="{{idx}}" range="{{priority}}" range-key="desc">
+      <view class="picker">
+        最小的触发器严重级别：{{priority[priority_index].desc}}
+      </view>
+    </picker>
+      </view>
       <view class="btn">
         <button style="margin: 30rpx 0" type="primary" formType="submit">应用</button>
         <button style="margin: 30rpx 0" formType="reset">重设</button>
@@ -25,13 +32,31 @@
     </form>
   </view>
   <view class="detail">
-  <view wx:for="{{table_header}}" wx:key="*this">
+  <!-- <view wx:for="{{table_header}}" wx:key="*this">
   <label>{{item}}</label>
-  </view>
+  </view> -->
     <view wx:for="{{alarms}}" wx:key="triggerid">
       <view  wx:for="{{item.hosts}}" wx:key="hostid" wx:for-item="host">
-        <navigator url="/pages/events/events?triggerid={{item.triggerid}}&&eventid={{item.lastEvent.eventid}}" hover-class="navigator-hover">{{format_time.getDateTime(item.lastchange)}}</navigator>  
-        <text>{{format_time.getPriority(item.priority)}} </text>  <text>{{format_time.getStatus(item.value)}}</text>  <navigator url="/pages/triggers/triggers?triggerid={{item.triggerid}}&&hostid={{host.hostid}}" hover-class="navigator-hover">{{host.host}}</navigator>  <navigator url="/pages/triggers/triggers?triggerid={{item.triggerid}}&&hostid={{host.hostid}}" hover-class="navigator-hover">{{item.description}}</navigator>  <text>{{format_time.getacknowledged(item.lastEvent.acknowledged)}}</text>
+      <view class="divLine"/>
+      <view class="line">
+        <navigator url="/pages/events/events?triggerid={{item.triggerid}}&&eventid={{item.lastEvent.eventid}}" hover-class="navigator-hover">时间：{{format_time.getDateTime(item.lastchange)}}</navigator>
+      </view>
+        <view class="line">
+          <text>严重性：{{format_time.getPriority(item.priority)}} </text>
+        </view>
+        <view class="line">
+          <text>状态：{{format_time.getStatus(item.value)}}</text>
+        </view>
+        <view class="line">
+          <navigator url="/pages/triggers/triggers?triggerid={{item.triggerid}}&&hostid={{host.hostid}}" hover-class="navigator-hover">主机：{{host.host}}</navigator>
+        </view>
+        <view class="line">
+           <navigator url="/pages/triggers/triggers?triggerid={{item.triggerid}}&&hostid={{host.hostid}}" hover-class="navigator-hover">问题：{{item.description}}</navigator>
+        </view>
+        <view class="line">
+          <text>确认状态：{{format_time.getacknowledged(item.lastEvent.acknowledged)}}</text>
+        </view>
+               
       </view>
 
     </view>

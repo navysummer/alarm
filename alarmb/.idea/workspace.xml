@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b012affc-bd0c-4158-b2ee-671454d2878a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarm/event.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/event.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-    </list>
+    <list default="true" id="b012affc-bd0c-4158-b2ee-671454d2878a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,7 +98,7 @@
       <workItem from="1592961447947" duration="4289000" />
       <workItem from="1592981025104" duration="5789000" />
       <workItem from="1593305878920" duration="196000" />
-      <workItem from="1593306104245" duration="8206000" />
+      <workItem from="1593306104245" duration="8805000" />
     </task>
     <servers />
   </component>

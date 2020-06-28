@@ -8,7 +8,29 @@ Page({
    */
   data: {
     alarms:[],
-    table_header:['时间','严重性','状态','主机','问题','确认']
+    table_header:['时间','严重性','状态','主机','问题','确认'],
+    priority:[{
+      value:'0',
+      desc:'未分类'
+    },{
+      value:'1',
+      desc:'信息'
+    },{
+      value:'2',
+      desc:'警告'
+    },
+    {
+      value:'3',
+      desc:'一般严重'
+    },
+    {
+      value:'4',
+      desc:'严重'
+    },{
+      value:'5',
+      desc:'灾难'
+    }],
+    priority_index:0
   },
 
   /**
@@ -108,6 +130,9 @@ Page({
   },
   get_triggers:function(e){
     console.log(e)
+  },
+  bindPickerChange:function(e){
+    this.setData({priority_index:e.detail.value})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
