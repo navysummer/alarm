@@ -53,7 +53,6 @@ Page({
     this.setData({index:e.detail.value})
   },
   get_alarms:function(e){
-    console.log(123)
     let regions = this.data.regions
     if(regions.length!=0){
       let idx = this.data.index
