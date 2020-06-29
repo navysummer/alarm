@@ -14,7 +14,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.decorators import api_view,  authentication_classes, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
-from alarm.event import Zabbix
+from alarm.zabbix import Zabbix
 from rest_framework.decorators import action
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, JsonResponse
@@ -53,7 +53,7 @@ def events_view(request):
     data = request.data
     if 'config' in data:
         config = data['config']
-        args = None
+        params = None
         if 'region_name' in config and 'id' in config:
             try:
                 region = Region.objects.get(region_name=config['region_name'], id=config['id'])
@@ -70,14 +70,14 @@ def events_view(request):
                     error = {'error': 'zabbix config is error'}
                     return Response(error, status=status.HTTP_403_FORBIDDEN)
                 if 'params' in data:
-                    args = data['params']
-                events = zabbix.get_events(args)
+                    params = data['params']
+                events = zabbix.get_events(params)
                 return Response(events,status=status.HTTP_200_OK)
             except:
                 error = {'error': 'get events is error'}
                 return Response(error, status=status.HTTP_403_FORBIDDEN)
         else:
-            error={'error':'params config is error'}
+            error = {'error': 'params config is error'}
             return Response(error,status=status.HTTP_403_FORBIDDEN)
     else:
         error = {'error': 'params is error'}
@@ -91,7 +91,7 @@ def triggers_view(request):
     data = request.data
     if 'config' in data:
         config = data['config']
-        args = None
+        params = None
         if 'region_name' in config and 'id' in config:
             try:
                 region = Region.objects.get(region_name=config['region_name'], id=config['id'])
@@ -108,8 +108,8 @@ def triggers_view(request):
                     error = {'error': 'zabbix config is error'}
                     return Response(error, status=status.HTTP_403_FORBIDDEN)
                 if 'params' in data:
-                    args = data['params']
-                triggers = zabbix.get_triggers(args)
+                    params = data['params']
+                triggers = zabbix.get_triggers(params)
                 return Response(triggers,status=status.HTTP_200_OK)
             except:
                 error = {'error': 'get triggers is fail'}
@@ -117,6 +117,82 @@ def triggers_view(request):
         else:
             error = {'error': 'params config is error'}
             return Response(error, status=status.HTTP_403_FORBIDDEN)
+    else:
+        error = {'error': 'params is error'}
+        return Response(error, status=status.HTTP_403_FORBIDDEN)
+
+
+@api_view(["POST"])
+@authentication_classes((BasicAuthentication,))
+@permission_classes((IsAuthenticated,))
+def hostgroups_view(request):
+    data = request.data
+    if 'config' in data:
+        config = data['config']
+        params = None
+        if 'region_name' in config and 'id' in config:
+            try:
+                region = Region.objects.get(region_name=config['region_name'], id=config['id'])
+            except:
+                error = {'error': '%s can not find'%(config['region_name'])}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
+            url = region.region_url
+            user = region.username
+            password = region.passwd
+            try:
+                try:
+                    zabbix = Zabbix(url, user, password)
+                except:
+                    error = {'error': 'zabbix config is error'}
+                    return Response(error, status=status.HTTP_403_FORBIDDEN)
+                if 'params' in data:
+                    params = data['params']
+                hostgroups = zabbix.get_hostgroups(params)
+                return Response(hostgroups,status=status.HTTP_200_OK)
+            except:
+                error = {'error': 'get hostgroups is error'}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
+        else:
+            error = {'error': 'params config is error'}
+            return Response(error,status=status.HTTP_403_FORBIDDEN)
+    else:
+        error = {'error': 'params is error'}
+        return Response(error, status=status.HTTP_403_FORBIDDEN)
+
+
+@api_view(["POST"])
+@authentication_classes((BasicAuthentication,))
+@permission_classes((IsAuthenticated,))
+def hosts_view(request):
+    data = request.data
+    if 'config' in data:
+        config = data['config']
+        params = None
+        if 'region_name' in config and 'id' in config:
+            try:
+                region = Region.objects.get(region_name=config['region_name'], id=config['id'])
+            except:
+                error = {'error': '%s can not find'%(config['region_name'])}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
+            url = region.region_url
+            user = region.username
+            password = region.passwd
+            try:
+                try:
+                    zabbix = Zabbix(url, user, password)
+                except:
+                    error = {'error': 'zabbix config is error'}
+                    return Response(error, status=status.HTTP_403_FORBIDDEN)
+                if 'params' in data:
+                    params = data['params']
+                hosts = zabbix.get_hosts(params)
+                return Response(hosts,status=status.HTTP_200_OK)
+            except:
+                error = {'error': 'get hostgroups is error'}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
+        else:
+            error = {'error': 'params config is error'}
+            return Response(error,status=status.HTTP_403_FORBIDDEN)
     else:
         error = {'error': 'params is error'}
         return Response(error, status=status.HTTP_403_FORBIDDEN)

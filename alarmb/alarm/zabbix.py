@@ -31,3 +31,19 @@ class Zabbix():
         triggers = self.client.trigger.get(**params)
         return triggers
 
+    def get_hostgroups(self,params=None):
+        if not params or not isinstance(params, dict):
+            params = {
+                "output": "extend"
+            }
+        hostgroups = self.client.hostgroup.get(**params)
+        return hostgroups
+
+    def get_hosts(self,params=None):
+        if not params or not isinstance(params, dict):
+            params = {
+                "output": "extend"
+            }
+        hosts = self.client.host.get(**params)
+        return hosts
+
