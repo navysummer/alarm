@@ -19,6 +19,29 @@
         </checkbox-group>
     </scroll-view>
   </modal>
+  <modal class = "hostmodal"
+    hidden = "{{hiddenmodal}}"
+    title = "主机"
+    confirm-text = "选择"
+    cancel-text = "取消"
+    bindcancel = "hostcancel"
+    bindconfirm = "hostconfirm" >
+    <scroll-view scroll-y="true" style="height: 300rpx;" class="weui-cells weui-cells_after-title">
+        <picker bindchange="host_hostgroups_bindPickerChange" value="{{idx}}" range="{{host_hostgroups}}" range-key="name">
+          <view class="picker">
+            当前主机组：{{host_hostgroups[host_hostgroup_index].name}}
+          </view>
+        </picker>
+        <checkbox-group bindchange="hostcheckboxChange">
+            <label class="weui-cell weui-check__label" wx:for="{{hostgroups_host}}" wx:key="hostid">
+                <view class="weui-cell__hd">
+                    <checkbox value="{{item.host}}" checked="{{item.checked}}"/>
+                </view>
+                <view class="weui-cell__bd">{{item.host}}</view>
+            </label>
+        </checkbox-group>
+    </scroll-view>
+  </modal>
   <view>
     <form catchsubmit="formSubmit" catchreset="formReset">
       <view class="groups">
