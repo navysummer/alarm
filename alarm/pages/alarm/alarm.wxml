@@ -20,7 +20,7 @@
     </scroll-view>
   </modal>
   <modal class = "hostmodal"
-    hidden = "{{hiddenmodal}}"
+    hidden = "{{hiddenhostmodal}}"
     title = "主机"
     confirm-text = "选择"
     cancel-text = "取消"
@@ -51,12 +51,12 @@
       </view>
       <view class="hosts">
       <label>主机：</label>
-      <input class="hosts_input"/>
+      <input class="hosts_input" value="{{hosts_input}}"/>
       <button style="margin: 30rpx 0" type="default" bindtap="get_hosts">选择</button>
       </view>
       <view class="triggers">
       <label>触发器：</label>
-      <input class="triggers_input"/>
+      <input class="triggers_input" value="{{triggers_input}}"/>
       <button style="margin: 30rpx 0" type="default" bindtap="get_triggers">选择</button>
       </view>
       <view class="min_priority">

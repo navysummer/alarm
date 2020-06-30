@@ -31,9 +31,9 @@ Page({
       desc:'灾难'
     }],
     priority_index:0,
-    priorityclass:['white','white','yellow','red','red','red'],
+    priorityclass:['gray','green','yellow','orange','red','blue'],
     hiddenhostgroupmodal: true,
-    hiddenmodal:true,
+    hiddenhostmodal:true,
     hostgroups:[],
     hostgroups_input:[],
     hostgroupschecked:[],
@@ -264,6 +264,47 @@ Page({
             success(res){
               if(res.statusCode==200){
                 _this.setData({host_hostgroups:res.data})
+                if(_this.data.host_hostgroups.length){
+                  let groupid = _this.data.host_hostgroups[0].groupid
+                  let host_params={
+                    'config':{
+                      'id':alarm_params.id,
+                      'region_name':alarm_params.region_name
+                    },
+                    'params':{
+                      "output": ['hostid','host'],
+                      "groupids": groupid
+                    }
+                  }
+                  wx.request({
+                    url: baseurl+'/hosts',
+                    method:'POST',
+                    header:{
+                      "Content-Type": " application/json",
+                      "Authorization": basicAuth
+                    },
+                    data:host_params,
+                    success(res){
+                      if(res.statusCode==200){
+                        _this.setData({hostgroups_host:res.data})
+                      }else{
+                        console.log(res)
+                        wx.showModal({
+                          title: '提示',
+                          content: res.data.error
+                        })
+                      }
+                    },
+                    fail(e){
+                      console.log(e)
+                      wx.showModal({
+                        title: '提示',
+                        content: '获取告警失败'
+                      })
+                    }
+                  })
+
+                }
               }else{
                 console.log(res)
                 wx.showModal({
@@ -281,47 +322,7 @@ Page({
             }
           })
           
-          let host_hostgroup_index = _this.data.host_hostgroup_index
-          console.log(host_hostgroup_index)
-          console.log(_this.data.host_hostgroups)
-          // let groupid = _this.data.host_hostgroups[host_hostgroup_index].groupid
-          // let host_params={
-          //   'config':{
-          //     'id':alarm_params.id,
-          //     'region_name':alarm_params.region_name
-          //   },
-          //   'params':{
-          //     "output": ['hostid','host'],
-          //     "groupids": groupid
-          //   }
-          // }
-          // wx.request({
-          //   url: baseurl+'/hosts',
-          //   method:'POST',
-          //   header:{
-          //     "Content-Type": " application/json",
-          //     "Authorization": basicAuth
-          //   },
-          //   data:host_params,
-          //   success(res){
-          //     if(res.statusCode==200){
-          //       _this.setData({hostgroups_host:res.data})
-          //     }else{
-          //       console.log(res)
-          //       wx.showModal({
-          //         title: '提示',
-          //         content: res.data.error
-          //       })
-          //     }
-          //   },
-          //   fail(e){
-          //     console.log(e)
-          //     wx.showModal({
-          //       title: '提示',
-          //       content: '获取告警失败'
-          //     })
-          //   }
-          // })
+
         }
       }
     } catch (e) {
@@ -331,11 +332,91 @@ Page({
         content: '获取alarm_params失败'
       })
     }
-    this.setData({hiddenmodal:false})
-
+    this.setData({hiddenhostmodal:false})
+  },
+  hostconfirm:function(e){
+    let hostschecked = this.data.hostschecked
+    this.setData({hosts_input:hostschecked})
+    this.setData({hiddenhostmodal:true})
+  },
+  hostcancel:function(e){
+    this.setData({hiddenhostmodal:true})
   },
   host_hostgroups_bindPickerChange:function(e){
     this.setData({host_hostgroup_index:e.detail.value})
+    let basicAuth = app.globalData.basicAuth
+    let flag = common.authenticate(app)
+    if(!flag){
+      wx.redirectTo({
+        url: '/pages/login/login'
+      })
+    }
+    try {
+      var alarm_params = wx.getStorageSync('alarm_params')
+      if(typeof(alarm_params)=='undefined'){
+        wx.showModal({
+          title: '提示',
+          content: '获取alarm_params失败,即将返回前一页'
+        })
+        wx.redirectTo({
+          url: '/pages/index/index'
+        })
+      }else{
+        if(typeof(alarm_params.id)!='undefined' && typeof(alarm_params.region_name)!='undefined'){
+          let groupid = this.data.host_hostgroups[e.detail.value].groupid
+          let params = {
+            'config':{
+              'id':alarm_params.id,
+              'region_name':alarm_params.region_name
+            },
+            'params':{
+              "output": 'extend',
+              "groupids": groupid
+            }
+          }
+          if(typeof(alarm_params.params)!='undefined'){
+            params.params=alarm_params.params
+          }
+          let _this = this
+          wx.request({
+            url: baseurl+'/hosts',
+            method:'POST',
+            header:{
+              "Content-Type": " application/json",
+              "Authorization": basicAuth
+            },
+            data:params,
+            success(res){
+              if(res.statusCode==200){
+                _this.setData({hostgroups_host:res.data})
+              }else{
+                console.log(res)
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.error
+                })
+              }
+            },
+            fail(e){
+              console.log(e)
+              wx.showModal({
+                title: '提示',
+                content: '获取告警失败'
+              })
+            }
+          })
+        }
+      }
+    } catch (e) {
+      console.log(e)
+      wx.showModal({
+        title: '提示',
+        content: '获取alarm_params失败'
+      })
+    }
+  },
+  hostcheckboxChange:function(e){
+    this.setData({hostschecked:e.detail.value})
   },
   get_triggers:function(e){
     console.log(e)
