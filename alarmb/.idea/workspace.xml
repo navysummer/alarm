@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b012affc-bd0c-4158-b2ee-671454d2878a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../alarm/pages/alarm/alarm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/pages/alarm/alarm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,7 +90,7 @@
       <workItem from="1593305878920" duration="196000" />
       <workItem from="1593306104245" duration="9467000" />
       <workItem from="1593393971888" duration="6966000" />
-      <workItem from="1593478884262" duration="4496000" />
+      <workItem from="1593478884262" duration="5097000" />
     </task>
     <servers />
   </component>

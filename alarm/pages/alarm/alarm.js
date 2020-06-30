@@ -669,8 +669,78 @@ Page({
     }
   },
   trigger_hosts_bindPickerChange:function(e){
-    console.log(e)
-    // this.setData({priority_index:e.detail.value})
+    this.setData({trigger_host_index:e.detail.value})
+    let hostid = this.data.trigger_hosts[e.detail.value].hostid
+    let basicAuth = app.globalData.basicAuth
+    let flag = common.authenticate(app)
+    if(!flag){
+      wx.redirectTo({
+        url: '/pages/login/login'
+      })
+    }
+    try {
+      var alarm_params = wx.getStorageSync('alarm_params')
+      if(typeof(alarm_params)=='undefined'){
+        wx.showModal({
+          title: '提示',
+          content: '获取alarm_params失败,即将返回前一页'
+        })
+        wx.redirectTo({
+          url: '/pages/index/index'
+        })
+      }else{
+        if(typeof(alarm_params.id)!='undefined' && typeof(alarm_params.region_name)!='undefined'){
+          let params = {
+            'config':{
+              'id':alarm_params.id,
+              'region_name':alarm_params.region_name
+            },
+            'params':{
+              "output": ['triggerid','description'],
+              'hostids':hostid
+            }
+          }
+          if(typeof(alarm_params.params)!='undefined'){
+            params.params=alarm_params.params
+          }
+          let _this = this
+          wx.request({
+            url: baseurl+'/triggers',
+            method:'POST',
+            header:{
+              "Content-Type": " application/json",
+              "Authorization": basicAuth
+            },
+            data:params,
+            success(res){
+              if(res.statusCode==200){
+                _this.setData({hosts_triggers:res.data})
+              }else{
+                console.log(res)
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.error
+                })
+              }
+            },
+            fail(e){
+              console.log(e)
+              wx.showModal({
+                title: '提示',
+                content: '获取告警失败'
+              })
+            }
+          })
+        }
+      }
+    } catch (e) {
+      console.log(e)
+      wx.showModal({
+        title: '提示',
+        content: '获取alarm_params失败'
+      })
+    }
+
   },
   triggercheckboxChange:function(e){
     console.log(e)
