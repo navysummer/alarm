@@ -426,7 +426,6 @@ Page({
     this.setData({hostschecked:e.detail.value})
   },
   get_triggers:function(e){
-    this.setData({trigger_hostgroups:[]})
     let basicAuth = app.globalData.basicAuth
     let flag = common.authenticate(app)
     if(!flag){
@@ -495,7 +494,7 @@ Page({
                       if(res.statusCode==200){
                         _this.setData({trigger_hosts:res.data})
                         if(_this.data.trigger_hosts.length){
-                          let trigger_host_index = _this.data.trigger_hosts.trigger_host_index
+                          let trigger_host_index = _this.data.trigger_host_index
                           let hostid = _this.data.trigger_hosts[trigger_host_index].hostid
                           let trigger_parmas = {
                             'config':{
