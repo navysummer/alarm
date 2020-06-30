@@ -220,7 +220,7 @@ Page({
     this.setData({hostgroupschecked:e.detail.value})
   },
   get_hosts:function(e){
-    this.setData({host_hostgroups:[]})
+    // this.setData({host_hostgroups:[]})
     let basicAuth = app.globalData.basicAuth
     let flag = common.authenticate(app)
     if(!flag){
@@ -265,7 +265,8 @@ Page({
               if(res.statusCode==200){
                 _this.setData({host_hostgroups:res.data})
                 if(_this.data.host_hostgroups.length){
-                  let groupid = _this.data.host_hostgroups[0].groupid
+                  let host_hostgroup_index = _this.data.host_hostgroup_index
+                  let groupid = _this.data.host_hostgroups[host_hostgroup_index].groupid
                   let host_params={
                     'config':{
                       'id':alarm_params.id,
