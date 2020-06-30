@@ -593,6 +593,8 @@ Page({
     this.setData({hiddentriggermodal:true})
   },
   triggerconfirm:function(e){
+    let triggerschecked = this.data.triggerschecked
+    this.setData({triggers_input:triggerschecked})
     this.setData({hiddentriggermodal:true})
   },
   trigger_hostgroups_bindPickerChange:function(e){
@@ -642,6 +644,50 @@ Page({
             success(res){
               if(res.statusCode==200){
                 _this.setData({trigger_hosts:res.data})
+                if(res.data.length){
+                  let trigger_host_index = _this.data.trigger_host_index
+                  let hostid = _this.data.trigger_hosts[trigger_host_index].hostid
+                  let params = {
+                    'config':{
+                      'id':alarm_params.id,
+                      'region_name':alarm_params.region_name
+                    },
+                    'params':{
+                      "output": ['triggerid','description'],
+                      'hostids':hostid
+                    }
+                  }
+                  if(typeof(alarm_params.params)!='undefined'){
+                    params.params=alarm_params.params
+                  }
+                  wx.request({
+                    url: baseurl+'/triggers',
+                    method:'POST',
+                    header:{
+                      "Content-Type": " application/json",
+                      "Authorization": basicAuth
+                    },
+                    data:params,
+                    success(res){
+                      if(res.statusCode==200){
+                        _this.setData({hosts_triggers:res.data})
+                      }else{
+                        console.log(res)
+                        wx.showModal({
+                          title: '提示',
+                          content: res.data.error
+                        })
+                      }
+                    },
+                    fail(e){
+                      console.log(e)
+                      wx.showModal({
+                        title: '提示',
+                        content: '获取告警失败'
+                      })
+                    }
+                  })
+                }
               }else{
                 console.log(res)
                 wx.showModal({
@@ -743,8 +789,7 @@ Page({
 
   },
   triggercheckboxChange:function(e){
-    console.log(e)
-    // this.setData({priority_index:e.detail.value})
+    this.setData({triggerschecked:e.detail.value})
   },
   bindPickerChange:function(e){
     console.log(e)
