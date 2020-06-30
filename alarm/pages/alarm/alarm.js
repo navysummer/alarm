@@ -34,6 +34,7 @@ Page({
     priorityclass:['gray','green','yellow','orange','red','blue'],
     hiddenhostgroupmodal: true,
     hiddenhostmodal:true,
+    hiddentriggermodal:true,
     hostgroups:[],
     hostgroups_input:[],
     hostgroupschecked:[],
@@ -45,7 +46,12 @@ Page({
     hostschecked:[],
     triggers:[],
     triggers_input:[],
-    triggerschecked:[]
+    triggerschecked:[],
+    trigger_hostgroups:[],
+    trigger_hosts:[],
+    trigger_hostgroup_index:0,
+    trigger_host_index:0,
+    hosts_triggers:[]
   },
 
   /**
@@ -87,7 +93,6 @@ Page({
               "sortfield": "priority",
               "sortorder": "DESC",
               "selectLastEvent": "extend",
-              "only_true": 1,
               "min_severity": 0,
               "monitored": 1,
               "skipDependent": 1,
@@ -420,7 +425,167 @@ Page({
     this.setData({hostschecked:e.detail.value})
   },
   get_triggers:function(e){
-    console.log(e)
+    let basicAuth = app.globalData.basicAuth
+    let flag = common.authenticate(app)
+    if(!flag){
+      wx.redirectTo({
+        url: '/pages/login/login'
+      })
+    }
+    try {
+      var alarm_params = wx.getStorageSync('alarm_params')
+      if(typeof(alarm_params)=='undefined'){
+        wx.showModal({
+          title: '提示',
+          content: '获取alarm_params失败,即将返回前一页'
+        })
+        wx.redirectTo({
+          url: '/pages/index/index'
+        })
+      }else{
+        if(typeof(alarm_params.id)!='undefined' && typeof(alarm_params.region_name)!='undefined'){
+          let params = {
+            'config':{
+              'id':alarm_params.id,
+              'region_name':alarm_params.region_name
+            },
+            'params':{
+              "output": 'extend'
+            }
+          }
+          if(typeof(alarm_params.params)!='undefined'){
+            params.params=alarm_params.params
+          }
+          let _this = this
+          wx.request({
+            url: baseurl+'/hostgroups',
+            method:'POST',
+            header:{
+              "Content-Type": " application/json",
+              "Authorization": basicAuth
+            },
+            data:params,
+            success(res){
+              if(res.statusCode==200){
+                _this.setData({trigger_hostgroups:res.data})
+                if(_this.data.trigger_hostgroups.length){
+                  let trigger_hostgroup_index = _this.data.trigger_hostgroup_index
+                  let groupid = _this.data.trigger_hostgroups[trigger_hostgroup_index].groupid
+                  let host_params={
+                    'config':{
+                      'id':alarm_params.id,
+                      'region_name':alarm_params.region_name
+                    },
+                    'params':{
+                      "output": ['hostid','host'],
+                      "groupids": groupid
+                    }
+                  }
+                  wx.request({
+                    url: baseurl+'/hosts',
+                    method:'POST',
+                    header:{
+                      "Content-Type": " application/json",
+                      "Authorization": basicAuth
+                    },
+                    data:host_params,
+                    success(res){
+                      if(res.statusCode==200){
+                        _this.setData({trigger_hosts:res.data})
+                        if(_this.data.trigger_hosts.length){
+                          let trigger_host_index = _this.data.trigger_hosts.trigger_host_index
+                          let hostid = _this.data.trigger_hosts[trigger_host_index].hostid
+                          let trigger_parmas = {
+                            'config':{
+                              'id':alarm_params.id,
+                              'region_name':alarm_params.region_name
+                            },
+                            'params':{
+                              "output": [
+                                  "triggerid",
+                                  "description"
+                              ],
+                              "hostids":hostid,
+                              "min_severity": 0,
+                              "monitored": 1,
+                              "skipDependent": 1,
+                              "expandDescription":1
+                            }
+                          }
+                          wx.request({
+                            url: baseurl+'/hosts',
+                            method:'POST',
+                            header:{
+                              "Content-Type": " application/json",
+                              "Authorization": basicAuth
+                            },
+                            data:trigger_parmas,
+                            success(res){
+                              if(res.statusCode==200){
+                                _this.setData({hosts_triggers:res.data})
+                              }else{
+                                console.log(res)
+                                wx.showModal({
+                                  title: '提示',
+                                  content: res.data.error
+                                })
+                              }
+                            },
+                            fail(e){
+                              console.log(e)
+                              wx.showModal({
+                                title: '提示',
+                                content: '获取告警失败'
+                              })
+                            }
+                          })
+                        }
+                      }else{
+                        console.log(res)
+                        wx.showModal({
+                          title: '提示',
+                          content: res.data.error
+                        })
+                      }
+                    },
+                    fail(e){
+                      console.log(e)
+                      wx.showModal({
+                        title: '提示',
+                        content: '获取告警失败'
+                      })
+                    }
+                  })
+
+                }
+              }else{
+                console.log(res)
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.error
+                })
+              }
+            },
+            fail(e){
+              console.log(e)
+              wx.showModal({
+                title: '提示',
+                content: '获取告警失败'
+              })
+            }
+          })
+          
+
+        }
+      }
+    } catch (e) {
+      console.log(e)
+      wx.showModal({
+        title: '提示',
+        content: '获取alarm_params失败'
+      })
+    }
+    this.setData({hiddentriggermodal:false})
   },
   bindPickerChange:function(e){
     this.setData({priority_index:e.detail.value})

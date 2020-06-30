@@ -42,6 +42,34 @@
         </checkbox-group>
     </scroll-view>
   </modal>
+    <modal class = "triggermodal"
+    hidden = "{{hiddentriggermodal}}"
+    title = "触发器"
+    confirm-text = "选择"
+    cancel-text = "取消"
+    bindcancel = "triggercancel"
+    bindconfirm = "triggerconfirm" >
+    <scroll-view scroll-y="true" style="height: 300rpx;" class="weui-cells weui-cells_after-title">
+        <picker bindchange="trigger_hostgroups_bindPickerChange" value="{{idx}}" range="{{trigger_hostgroups}}" range-key="name">
+          <view class="picker">
+            当前主机组：{{trigger_hostgroups[trigger_hostgroup_index].name}}
+          </view>
+        </picker>
+        <picker bindchange="trigger_hosts_bindPickerChange" value="{{idx}}" range="{{trigger_hosts}}" range-key="host">
+          <view class="picker">
+            当前主机：{{trigger_hosts[trigger_host_index].host}}
+          </view>
+        </picker>
+        <checkbox-group bindchange="triggercheckboxChange">
+            <label class="weui-cell weui-check__label" wx:for="{{hosts_triggers}}" wx:key="triggerid">
+                <view class="weui-cell__hd">
+                    <checkbox value="{{item.description}}" checked="{{item.checked}}"/>
+                </view>
+                <view class="weui-cell__bd">{{item.description}}</view>
+            </label>
+        </checkbox-group>
+    </scroll-view>
+  </modal>
   <view>
     <form catchsubmit="formSubmit" catchreset="formReset">
       <view class="groups">
