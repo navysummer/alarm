@@ -45,3 +45,6 @@ label{
  .weui-cell{
    display:inline;
  }
+ .prioritypicker{
+   display: inline-block;
+ }

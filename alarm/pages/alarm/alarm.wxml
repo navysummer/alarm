@@ -89,7 +89,7 @@
       </view>
       <view class="min_priority">
       <picker name="priority" bindchange="bindPickerChange" value="{{idx}}" range="{{priority}}" range-key="desc" >
-      最小的触发器严重级别：<view class="picker">
+      最小的触发器严重级别：<view class="prioritypicker">
         {{priority[priority_index].desc}}
       </view>
     </picker>
