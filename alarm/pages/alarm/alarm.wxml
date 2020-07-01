@@ -42,7 +42,7 @@
         </checkbox-group>
     </scroll-view>
   </modal>
-    <modal class = "triggermodal"
+  <modal class = "triggermodal"
     hidden = "{{hiddentriggermodal}}"
     title = "触发器"
     confirm-text = "选择"
@@ -74,23 +74,23 @@
     <form catchsubmit="formSubmit" catchreset="formReset">
       <view class="groups">
       <label>主机组：</label>
-      <input class="groups_input" value="{{hostgroups_input}}"/>
+      <input class="groups_input" value="{{hostgroups_input}}" name="hostgroups"/>
       <button style="margin: 30rpx 0" type="default" bindtap="get_groups">选择</button>
       </view>
       <view class="hosts">
       <label>主机：</label>
-      <input class="hosts_input" value="{{hosts_input}}"/>
+      <input class="hosts_input" value="{{hosts_input}}" name="hosts"/>
       <button style="margin: 30rpx 0" type="default" bindtap="get_hosts">选择</button>
       </view>
       <view class="triggers">
       <label>触发器：</label>
-      <input class="triggers_input" value="{{triggers_input}}"/>
+      <input class="triggers_input" value="{{triggers_input}}" name="triggers"/>
       <button style="margin: 30rpx 0" type="default" bindtap="get_triggers">选择</button>
       </view>
       <view class="min_priority">
-      <picker bindchange="bindPickerChange" value="{{idx}}" range="{{priority}}" range-key="desc">
-      <view class="picker">
-        最小的触发器严重级别：{{priority[priority_index].desc}}
+      <picker name="priority" bindchange="bindPickerChange" value="{{idx}}" range="{{priority}}" range-key="desc" >
+      最小的触发器严重级别：<view class="picker">
+        {{priority[priority_index].desc}}
       </view>
     </picker>
       </view>

@@ -226,7 +226,7 @@ Page({
     this.setData({hostgroupschecked:e.detail.value})
   },
   get_hosts:function(e){
-    // this.setData({host_hostgroups:[]})
+    this.setData({host_hostgroups:[],host_hostgroup_index:0,hostgroups_host:[]})
     let basicAuth = app.globalData.basicAuth
     let flag = common.authenticate(app)
     if(!flag){
@@ -426,6 +426,7 @@ Page({
     this.setData({hostschecked:e.detail.value})
   },
   get_triggers:function(e){
+    this.setData({trigger_hostgroups:[],trigger_hostgroup_index:0,trigger_hosts:[],trigger_host_index:0,hosts_triggers:[]})
     let basicAuth = app.globalData.basicAuth
     let flag = common.authenticate(app)
     if(!flag){
@@ -654,7 +655,12 @@ Page({
                     },
                     'params':{
                       "output": ['triggerid','description'],
-                      'hostids':hostid
+                      'hostids':hostid,
+                      "only_true": 1,
+                      "min_severity": 0,
+                      "monitored": 1,
+                      "skipDependent": 1,
+                      "expandDescription":1
                     }
                   }
                   if(typeof(alarm_params.params)!='undefined'){
@@ -743,7 +749,12 @@ Page({
             },
             'params':{
               "output": ['triggerid','description'],
-              'hostids':hostid
+              'hostids':hostid,
+              "only_true": 1,
+              "min_severity": 0,
+              "monitored": 1,
+              "skipDependent": 1,
+              "expandDescription":1
             }
           }
           if(typeof(alarm_params.params)!='undefined'){
@@ -792,8 +803,169 @@ Page({
     this.setData({triggerschecked:e.detail.value})
   },
   bindPickerChange:function(e){
+    this.setData({priority_index:e.detail.value})
+  },
+  formSubmit:function(e){
+    this.setData({alarms:[]})
+    let formData = e.detail.value
+    let hostgroups = this.trimArray(formData.hostgroups.split(','))
+    let hosts = this.trimArray(formData.hosts.split(','))
+    let priority = parseInt(formData.priority==null || formData.priority<0?'0':formData.priority)
+    // console.log(priority,formData.priority)
+    let triggers = this.trimArray(formData.triggers.split(','))
+    let basicAuth = app.globalData.basicAuth
+    let flag = common.authenticate(app)
+    if(!flag){
+      wx.redirectTo({
+        url: '/pages/login/login'
+      })
+    }
+    try {
+      var alarm_params = wx.getStorageSync('alarm_params')
+      if(typeof(alarm_params)=='undefined'){
+        wx.showModal({
+          title: '提示',
+          content: '获取alarm_params失败,即将返回前一页'
+        })
+        wx.redirectTo({
+          url: '/pages/index/index'
+        })
+      }else{
+        if(typeof(alarm_params.id)!='undefined' && typeof(alarm_params.region_name)!='undefined'){
+          let params = {
+            'config':{
+              'id':alarm_params.id,
+              'region_name':alarm_params.region_name
+            },
+            'params':{
+              "output": 'extend',
+              "filter":{
+                  "name":hostgroups
+              }
+            }
+          }
+          if(typeof(alarm_params.params)!='undefined'){
+            params.params=alarm_params.params
+          }
+          let _this = this
+          wx.request({
+            url: baseurl+'/hostgroups',
+            method:'POST',
+            header:{
+              "Content-Type": " application/json",
+              "Authorization": basicAuth
+            },
+            data:params,
+            success(res){
+              if(res.statusCode==200){
+                  let trigger_params={
+                    'config':{
+                      'id':alarm_params.id,
+                      'region_name':alarm_params.region_name
+                    },
+                    'params':{
+                      "output": [
+                        "triggerid",
+                        "description",
+                        "priority",
+                        "lastchange",
+                        "value"
+                      ],
+                      "filter":{},
+                      "sortfield": "priority",
+                      "sortorder": "DESC",
+                      "selectLastEvent": "extend",
+                      "only_true": 1,
+                      "min_severity": priority,
+                      "monitored": 1,
+                      "skipDependent": 1,
+                      "expandDescription":1,
+                      "selectHosts":["hostid","host"]
+                    }
+                  }
+                  if(res.data.length){
+                    let ghostgroups = res.data
+                    let len = ghostgroups.length
+                    let groupids = []
+                    for(let i=0;i<len;i++){
+                      groupids.push(ghostgroups[i].groupid)
+                    }
+                    if(groupids.length){
+                      trigger_params.params.groupids = groupids
+                    }
+                  }
+                  if(hosts.length){
+                    trigger_params.params.filter.host = hosts
+                  }
+                  if(triggers.length){
+                    trigger_params.params.filter.description = triggers
+                  }
+                  // console.log(trigger_params)
+                  wx.request({
+                    url: baseurl+'/triggers',
+                    method:'POST',
+                    header:{
+                      "Content-Type": " application/json",
+                      "Authorization": basicAuth
+                    },
+                    data:trigger_params,
+                    success(res){
+                      if(res.statusCode==200){
+                        _this.setData({alarms:res.data})
+                      }else{
+                        console.log(res)
+                        wx.showModal({
+                          title: '提示',
+                          content: res.data.error
+                        })
+                      }
+                    },
+                    fail(e){
+                      console.log(e)
+                      wx.showModal({
+                        title: '提示',
+                        content: '获取告警失败'
+                      })
+                    }
+                  })
+              }else{
+                console.log(res)
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.error
+                })
+              }
+            },
+            fail(e){
+              console.log(e)
+              wx.showModal({
+                title: '提示',
+                content: '获取告警失败'
+              })
+            }
+          })
+        }
+      }
+    } catch (e) {
+      console.log(e)
+      wx.showModal({
+        title: '提示',
+        content: '获取alarm_params失败'
+      })
+    }
+  },
+  formReset:function(e){
     console.log(e)
-    // this.setData({priority_index:e.detail.value})
+  },
+  trimArray:function(arr){
+    let newarr=[]
+    let len = arr.length
+    for(let i=0;i<len;i++){
+      if(arr[i]){
+        newarr.push(arr[i])
+      }
+    }
+    return newarr
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
