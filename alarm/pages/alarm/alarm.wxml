@@ -13,8 +13,8 @@
             <label class="weui-cell weui-check__label" wx:for="{{hostgroups}}" wx:key="groupid">
                 <view class="weui-cell__hd">
                     <checkbox value="{{item.name}}" checked="{{item.checked}}"/>
+                    <view class="weui-cell__bd">{{item.name}}</view>
                 </view>
-                <view class="weui-cell__bd">{{item.name}}</view>
             </label>
         </checkbox-group>
     </scroll-view>
@@ -36,8 +36,8 @@
             <label class="weui-cell weui-check__label" wx:for="{{hostgroups_host}}" wx:key="hostid">
                 <view class="weui-cell__hd">
                     <checkbox value="{{item.host}}" checked="{{item.checked}}"/>
+                    <view class="weui-cell__bd">{{item.host}}</view>
                 </view>
-                <view class="weui-cell__bd">{{item.host}}</view>
             </label>
         </checkbox-group>
     </scroll-view>
@@ -64,8 +64,8 @@
             <label class="weui-cell weui-check__label" wx:for="{{hosts_triggers}}" wx:key="triggerid">
                 <view class="weui-cell__hd">
                     <checkbox value="{{item.description}}" checked="{{item.checked}}"/>
+                    <view class="weui-cell__bd">{{item.description}}</view>
                 </view>
-                <view class="weui-cell__bd">{{item.description}}</view>
             </label>
         </checkbox-group>
     </scroll-view>

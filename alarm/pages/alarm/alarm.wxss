@@ -8,6 +8,9 @@
 .triggers_input{
   display: inline-table;
 } */
+.weui-cell__bd{
+  display: inline-block;
+}
 input{
   display: inline-table;
   width: 50%;
