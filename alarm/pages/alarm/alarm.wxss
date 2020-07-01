@@ -42,6 +42,9 @@ label{
  .red{
    color: red;
  }
+ .purple{
+   color: purple;
+ }
  .weui-cell{
    display:inline;
  }

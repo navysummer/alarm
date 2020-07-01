@@ -31,7 +31,7 @@ Page({
       desc:'灾难'
     }],
     priority_index:0,
-    priorityclass:['gray','green','yellow','orange','red','blue'],
+    priorityclass:['gray','green','yellow','orange','red','purple'],
     hiddenhostgroupmodal: true,
     hiddenhostmodal:true,
     hiddentriggermodal:true,
