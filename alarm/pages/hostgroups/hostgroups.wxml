@@ -1,2 +1,39 @@
 <!--pages/hosts/hosts.wxml-->
-<text>pages/hosts/hosts.wxml</text>
+<view>
+  <modal class = "hostmodal"
+    hidden = "{{hiddenhostmodal}}"
+    title = "主机"
+    confirm-text = "确定"
+    cancel-text = "取消"
+    bindcancel = "hide"
+    bindconfirm = "hide" >
+    <scroll-view scroll-y="true" style="height: 300rpx;" class="weui-cells weui-cells_after-title">
+            <label class="weui-cell weui-check__label" wx:for="{{hostgroup_hosts}}" wx:key="hostid">
+                <view class="weui-cell__hd">
+                    主机：<navigator url="/pages/hosts/hosts?hostid={{item.hostid}}" hover-class="navigator-hover">{{item.host}}</navigator>
+                </view>
+            </label>
+    </scroll-view>
+  </modal>
+  <view class="search_hostgroups">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+    <view class="input">
+      <label>名称：</label>
+      <input name='hostgroups'/>
+    </view>
+      <view class="btn">
+        <button style="margin: 30rpx 0" type="primary" formType="submit">应用</button>
+        <button style="margin: 30rpx 0" formType="reset">重设</button>
+      </view>
+    </form>
+  </view>
+  <view class="hostgroups-detail">
+    <view class="hostgroups" wx:for="{{hostgroups}}" wx:key="groupid">
+      <view class="divLine"/>
+      <view class="line">groupid:<navigator url="/pages/hostgroups/hostgroups?groupid={{item.groupid}}" hover-class="navigator-hover">{{item.groupid}}</navigator></view>
+      <view class="line">主机组名称:{{item.name}}</view>
+      <view class="line">当前主机组的主机:<button data-groupid="{{item.groupid}}" bindtap="showhostgroup_host" class="show">显示</button></view>
+    </view>
+  </view>
+</view>
+

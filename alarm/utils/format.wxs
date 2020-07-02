@@ -48,11 +48,32 @@ var filter = {
     }else{
       return '未知'
     }
+  },
+  getTriggerState:function(value){
+    if(value=='0'){
+      return '最新的'
+    }else if(value=='1'){
+      return '未知的'
+    }else{
+      return '未知'
+    }
+  },
+  getTriggerEnableStatus:function(value){
+    if(value=='0'){
+      return '启用'
+    }else if(value=='1'){
+      return '禁用'
+    }else{
+      return '未知'
+    }
   }
+
 }
 module.exports = {
   getDateTime: filter.getDateTime,
   getPriority:filter.getPriority,
   getStatus:filter.getStatus,
-  getacknowledged:filter.getacknowledged
+  getacknowledged:filter.getacknowledged,
+  getTriggerState:filter.getTriggerState,
+  getTriggerEnableStatus:filter.getTriggerEnableStatus,
 }

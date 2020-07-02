@@ -1,2 +1,19 @@
 <!--pages/triggers/triggers.wxml-->
-<text>pages/triggers/triggers.wxml</text>
+<wxs module="format" src="../../utils/format.wxs"></wxs>
+<view>
+  <view class="triggers-detail">
+    <view class="triggers" wx:for="{{triggers}}" wx:key="triggerid">
+      <view class="divLine"/>
+      <view class="line">triggerid:<navigator url="/pages/trigggers/trigggers?triggerid={{item.triggerid}}" hover-class="navigator-hover">{{item.triggerid}}</navigator></view>
+      <view class="line">表达式:{{item.expression}}</view>
+      <view class="line">触发器名称:{{item.description}}</view>
+      <view class="line">触发器启用状态:{{format.getTriggerEnableStatus(item.status)}}</view>
+      <view class="line">触发状态:{{format.getTriggerState(item.state)}}</view>
+      <view class="line">触发器状态:{{format.getStatus(item.value)}}</view>
+      <view class="line">触发器的附加注释:{{item.comments}}</view>
+      <view class="line">触发器的严重性级别:{{format.getPriority(item.priority)}}</view>
+      <view class="line">触发器最后更改其状态的时间:{{format.getDateTime(item.lastchange)}}</view>
+    </view>
+  </view>
+</view>
+

@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b012affc-bd0c-4158-b2ee-671454d2878a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../alarm/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../alarm/project.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarm/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarm/zabbix.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarm/zabbix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarmb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/alarmb/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +93,7 @@
       <workItem from="1593478884262" duration="5699000" />
       <workItem from="1593563620402" duration="229000" />
       <workItem from="1593564576046" duration="1354000" />
-      <workItem from="1593651803775" duration="2870000" />
+      <workItem from="1593651803775" duration="2875000" />
     </task>
     <servers />
   </component>
