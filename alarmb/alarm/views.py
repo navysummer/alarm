@@ -198,6 +198,44 @@ def hosts_view(request):
         return Response(error, status=status.HTTP_403_FORBIDDEN)
 
 
+@api_view(["POST"])
+@authentication_classes((BasicAuthentication,))
+@permission_classes((IsAuthenticated,))
+def items_view(request):
+    data = request.data
+    if 'config' in data:
+        config = data['config']
+        params = None
+        if 'region_name' in config and 'id' in config:
+            try:
+                region = Region.objects.get(region_name=config['region_name'], id=config['id'])
+            except:
+                error = {'error': '%s can not find'%(config['region_name'])}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
+            url = region.region_url
+            user = region.username
+            password = region.passwd
+            try:
+                try:
+                    zabbix = Zabbix(url, user, password)
+                except:
+                    error = {'error': 'zabbix config is error'}
+                    return Response(error, status=status.HTTP_403_FORBIDDEN)
+                if 'params' in data:
+                    params = data['params']
+                items = zabbix.get_items(params)
+                return Response(items,status=status.HTTP_200_OK)
+            except:
+                error = {'error': 'get items is error'}
+                return Response(error, status=status.HTTP_403_FORBIDDEN)
+        else:
+            error = {'error': 'params config is error'}
+            return Response(error,status=status.HTTP_403_FORBIDDEN)
+    else:
+        error = {'error': 'params is error'}
+        return Response(error, status=status.HTTP_403_FORBIDDEN)
+
+
 @csrf_exempt
 def user_login(request):
     if request.method == 'POST':

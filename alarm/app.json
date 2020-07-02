@@ -5,7 +5,11 @@
     "pages/logs/logs",
     "pages/alarm/alarm",
     "pages/triggers/triggers",
-    "pages/events/events"
+    "pages/events/events",
+    "pages/hosts/hosts",
+    "pages/host/host",
+    "pages/hostgroups/hostgroups",
+    "pages/items/items"
   ],
   "window": {
     "backgroundTextStyle": "light",

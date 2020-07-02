@@ -1,2 +1,40 @@
 <!--pages/events/events.wxml-->
-<text>pages/events/events.wxml</text>
+<wxs module="format" src="../../utils/format.wxs"></wxs>
+<view class="container">
+  <modal class = "acknowledgesmodal"
+    hidden = "{{hiddenacknowledgesmodal}}"
+    title = "确认信息"
+    confirm-text = "确定"
+    cancel-text = "取消"
+    bindcancel = "hide"
+    bindconfirm = "hide" >
+    <scroll-view scroll-y="true" style="height: 300rpx;" class="weui-cells weui-cells_after-title">
+        <view class="acknowledges" wx:for="{{acknowledges}}" wx:key="acknowledgeid">
+            <view>:acknowledgeid:{{item.acknowledgeid}}</view>
+            <view>:eventid:<navigator url="/pages/events/events?eventid={{item.eventid}}" hover-class="navigator-hover">{{item.eventid}}</navigator></view>
+            <view>:time:{{format.getDateTime(item.clock)}}</view>
+            <view>:message:{{item.message}}</view>
+            <view>:user:{{item.alias}}</view>
+        </view>
+    </scroll-view>
+  </modal>
+  <text>告警事件信息</text>
+  <view class="events" wx:for="{{events}}" wx:key="eventid">
+    <view class="events_host" wx:for="{{item.hosts}}" wx:key="hostid" wx:for-item="host">
+      <view class="divLine"/>
+      <view class="line">
+        事件id:<navigator url="/pages/events/events?eventid={{item.eventid}}" hover-class="navigator-hover">{{item.eventid}}</navigator>
+      </view>
+      <view class="line">
+        事件发生时间：{{format.getDateTime(item.clock)}}
+      </view>
+      <view class="line">
+        主机名称：<navigator url="/pages/hosts/hosts?hostid={{host.hostid}}" hover-class="navigator-hover">{{host.host}}</navigator>
+      </view>
+      <view class="line">
+        事件确认状态：{{format.getacknowledged(item.acknowledged)}}
+      </view>
+      <view class="line"><button data-acknowledges="{{item.acknowledges}}" bindtap="show">确认信息</button></view>
+    </view>
+  </view>
+</view>

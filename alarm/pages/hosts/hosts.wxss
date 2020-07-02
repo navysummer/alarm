@@ -1,0 +1,22 @@
+/* pages/hosts/hosts.wxss */
+.divLine{
+  background: #E0E3DA;
+  width: 100%;
+  height: 5rpx;
+ }
+ navigator{
+   display: inline-block;
+ }
+ .show{
+   display: inline-block;
+   background-color: white;
+   padding: 0;
+   margin:0;
+   line-height:21px;
+ }
+ .show::after {
+  border: none
+}
+input{
+  display: inline-block;
+}

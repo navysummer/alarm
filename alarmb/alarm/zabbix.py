@@ -16,7 +16,7 @@ class Zabbix():
         self.client.login(user, password)
 
     def get_events(self, params=None):
-        if not params or not  isinstance(params, dict):
+        if not params or not isinstance(params, dict):
             params = {
                 "output": "extend"
             }
@@ -31,7 +31,7 @@ class Zabbix():
         triggers = self.client.trigger.get(**params)
         return triggers
 
-    def get_hostgroups(self,params=None):
+    def get_hostgroups(self, params=None):
         if not params or not isinstance(params, dict):
             params = {
                 "output": "extend"
@@ -39,11 +39,19 @@ class Zabbix():
         hostgroups = self.client.hostgroup.get(**params)
         return hostgroups
 
-    def get_hosts(self,params=None):
+    def get_hosts(self, params=None):
         if not params or not isinstance(params, dict):
             params = {
                 "output": "extend"
             }
         hosts = self.client.host.get(**params)
         return hosts
+
+    def get_items(self, params):
+        if not params or not isinstance(params, dict):
+            params = {
+                "output": "extend"
+            }
+        items = self.client.item.get(**params)
+        return items
 

@@ -1,1 +1,10 @@
 /* pages/events/events.wxss */
+
+.divLine{
+  background: #E0E3DA;
+  width: 100%;
+  height: 5rpx;
+ }
+ navigator{
+   display: inline-block;
+ }

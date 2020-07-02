@@ -105,7 +105,7 @@
       <view  wx:for="{{item.hosts}}" wx:key="hostid" wx:for-item="host">
       <view class="divLine"/>
       <view class="line">
-        <navigator url="/pages/events/events?triggerid={{item.triggerid}}&&eventid={{item.lastEvent.eventid}}" hover-class="navigator-hover">时间：{{format.getDateTime(item.lastchange)}}</navigator>
+        <navigator url="/pages/events/events?eventid={{item.lastEvent.eventid}}" hover-class="navigator-hover">时间：{{format.getDateTime(item.lastchange)}}</navigator>
       </view>
         <view class="line">
           <text class="{{priorityclass[item.priority]}}">严重性：{{format.getPriority(item.priority)}} </text>
@@ -114,7 +114,7 @@
           <text>状态：{{format.getStatus(item.value)}}</text>
         </view>
         <view class="line">
-          <navigator url="/pages/triggers/triggers?triggerid={{item.triggerid}}&&hostid={{host.hostid}}" hover-class="navigator-hover">主机：{{host.host}}</navigator>
+          <navigator url="/pages/hosts/hosts?hostid={{host.hostid}}" hover-class="navigator-hover">主机：{{host.host}}</navigator>
         </view>
         <view class="line">
            <navigator url="/pages/triggers/triggers?triggerid={{item.triggerid}}&&hostid={{host.hostid}}" hover-class="navigator-hover">问题：{{item.description}}</navigator>
