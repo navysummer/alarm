@@ -10,7 +10,7 @@
   <view class="usermotto">
     <form catchsubmit="formSubmit" catchreset="formReset">
     <label>用户名:<input class="weui-input" name="username" /></label>
-    <label>密码:<input class="weui-input" name="passwd" password="true"/></label>
+    <label><text  decode="{{true}}">密&emsp;码</text>:<input class="weui-input" name="passwd" password="true"/></label>
     <view class="btn-area">
         <button style="margin: 30rpx 0" type="primary" formType="submit">登陆</button>
         <button style="margin: 30rpx 0" formType="reset">重置</button>

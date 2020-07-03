@@ -9,7 +9,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    flag:false,
+    flag:true,
     regions:[],
     index:0
   },
@@ -19,8 +19,10 @@ Page({
       wx.redirectTo({
         url: '/pages/login/login'
       })
+    }else{
+      this.getList()
     }
-
+    
   },
   getList:function(e){
     let basicAuth = app.globalData.basicAuth

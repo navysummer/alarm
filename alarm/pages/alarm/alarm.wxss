@@ -16,9 +16,23 @@ input{
   width: 50%;
   height: 10%;
 }
-button{
+textarea{
   display: inline-table;
+  border: 1px solid gray;
+  width: 100%;
 }
+/* button{
+  display: inline-table;
+} */
+.select_btn{
+  display: inline-block;
+  width: 100%;
+  /* background: green !important; */
+  border-radius:5px;
+}
+/* .select_btn::hover{
+  background: green !important;
+} */
 label{
   display: inline-table;
 }

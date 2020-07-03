@@ -74,18 +74,18 @@
     <form catchsubmit="formSubmit" catchreset="formReset">
       <view class="groups">
       <label>主机组：</label>
-      <input class="groups_input" value="{{hostgroups_input}}" name="hostgroups"/>
-      <button style="margin: 30rpx 0" type="default" bindtap="get_groups">选择</button>
+      <textarea auto-height class="groups_input" value="{{hostgroups_input}}" name="hostgroups"/>
+      <button class="select_btn" type="default" bindtap="get_groups">选择</button>
       </view>
       <view class="hosts">
       <label>主机：</label>
-      <input class="hosts_input" value="{{hosts_input}}" name="hosts"/>
-      <button style="margin: 30rpx 0" type="default" bindtap="get_hosts">选择</button>
+      <textarea auto-height class="hosts_input" value="{{hosts_input}}" name="hosts"/>
+      <button class="select_btn" type="default" bindtap="get_hosts">选择</button>
       </view>
       <view class="triggers">
       <label>触发器：</label>
-      <input class="triggers_input" value="{{triggers_input}}" name="triggers"/>
-      <button style="margin: 30rpx 0" type="default" bindtap="get_triggers">选择</button>
+      <textarea auto-height class="triggers_input" value="{{triggers_input}}" name="triggers"/>
+      <button class="select_btn" type="default" bindtap="get_triggers">选择</button>
       </view>
       <view class="min_priority">
       <picker name="priority" bindchange="bindPickerChange" value="{{idx}}" range="{{priority}}" range-key="desc" >

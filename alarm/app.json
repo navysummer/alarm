@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/index/index",
+    "pages/login/login",
     "pages/logs/logs",
     "pages/alarm/alarm",
     "pages/triggers/triggers",
@@ -17,6 +17,7 @@
     "navigationBarTitleText": "zabbix告警小程序",
     "navigationBarTextStyle": "black"
   },
+  
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
