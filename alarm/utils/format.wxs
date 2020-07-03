@@ -66,6 +66,10 @@ var filter = {
     }else{
       return '未知'
     }
+  },
+  convertTostring:function(value){
+    console.log(value)
+    return value
   }
 
 }
@@ -76,4 +80,5 @@ module.exports = {
   getacknowledged:filter.getacknowledged,
   getTriggerState:filter.getTriggerState,
   getTriggerEnableStatus:filter.getTriggerEnableStatus,
+  convertTostring:filter.convertTostring
 }

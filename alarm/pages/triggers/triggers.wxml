@@ -5,7 +5,7 @@
     <view class="triggers" wx:for="{{triggers}}" wx:key="triggerid">
       <view class="divLine"/>
       <view class="line">triggerid:<navigator url="/pages/trigggers/trigggers?triggerid={{item.triggerid}}" hover-class="navigator-hover">{{item.triggerid}}</navigator></view>
-      <view class="line">表达式:{{item.expression}}</view>
+      <view class="line">表达式:<textarea auto-height="ture" disabled="false" value="{{item.expression}}"></textarea></view>
       <view class="line">触发器名称:{{item.description}}</view>
       <view class="line">触发器启用状态:{{format.getTriggerEnableStatus(item.status)}}</view>
       <view class="line">触发状态:{{format.getTriggerState(item.state)}}</view>

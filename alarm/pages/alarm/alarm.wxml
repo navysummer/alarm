@@ -74,17 +74,17 @@
     <form catchsubmit="formSubmit" catchreset="formReset">
       <view class="groups">
       <label>主机组：</label>
-      <textarea auto-height class="groups_input" value="{{hostgroups_input}}" name="hostgroups"/>
+      <textarea auto-height="ture" class="groups_input" value="{{hostgroups_input}}" name="hostgroups"/>
       <button class="select_btn" type="default" bindtap="get_groups">选择</button>
       </view>
       <view class="hosts">
       <label>主机：</label>
-      <textarea auto-height class="hosts_input" value="{{hosts_input}}" name="hosts"/>
+      <textarea auto-height="ture" class="hosts_input" value="{{hosts_input}}" name="hosts"/>
       <button class="select_btn" type="default" bindtap="get_hosts">选择</button>
       </view>
       <view class="triggers">
       <label>触发器：</label>
-      <textarea auto-height class="triggers_input" value="{{triggers_input}}" name="triggers"/>
+      <textarea auto-height="ture" class="triggers_input" value="{{triggers_input}}" name="triggers"/>
       <button class="select_btn" type="default" bindtap="get_triggers">选择</button>
       </view>
       <view class="min_priority">
