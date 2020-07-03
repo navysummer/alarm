@@ -27,3 +27,6 @@ input{
 label{
   display: table-row;
 }
+/* button{
+  margin:0px;
+} */
