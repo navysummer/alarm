@@ -7,7 +7,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import UserSerializer, GroupSerializer, RegionSerializer
 from rest_framework import generics
-from alarm.permissions import IsOwnerOrReadOnly
+# from alarm.permissions import IsOwnerOrReadOnly
 from rest_framework import permissions
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
@@ -25,16 +25,14 @@ from django.views.decorators.csrf import csrf_exempt
 
 class UserViewSet(viewsets.ModelViewSet):
     authentication_classes = (BasicAuthentication,)
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly, IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsAuthenticated,)
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class GroupViewSet(viewsets.ModelViewSet):
     authentication_classes = (BasicAuthentication,)
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly, IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsAuthenticated,)
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
